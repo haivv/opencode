@@ -1,5 +1,11 @@
 <h2> mysql => javascript and json file 저장</h2>
 <?php
+if($_GET["year"]=="2022"){
+   require("data2.json");
+}
+if($_GET["year"]=="2023"){
+    require("data3.json");
+ }
 
 // Connect to MySQL database
 $conn = mysqli_connect("localhost", "root", "", "jangseong");
