@@ -1,12 +1,18 @@
 <h2> mysql => javascript and json file 저장</h2>
 <?php
-
 // Connect to MySQL database
 $conn = mysqli_connect("localhost", "root", "", "jangseong");
-$year = $_GET["year"];
-$cardinalnumber = $_GET["cardinalnumber"];
-//echo $cardinalnumber;
-$result = mysqli_query($conn, "SELECT name FROM  member  where num = '$cardinalnumber' and date like '$year%' GROUP BY name ");
+if((!isset($_GET["year"]))&&(!isset($_GET["cardinalnumber"])))
+{
+    $result = mysqli_query($conn, "SELECT name FROM  member  GROUP BY name ");
+}
+else{
+    $year = $_GET["year"];
+    $cardinalnumber = $_GET["cardinalnumber"];
+    
+    $result = mysqli_query($conn, "SELECT name FROM  member  where num = '$cardinalnumber' and date like '$year%' GROUP BY name ");
+}
+
 mysqli_set_charset($conn, 'utf8');
 
 // Create empty array for JSON data
